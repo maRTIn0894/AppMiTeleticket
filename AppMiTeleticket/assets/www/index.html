@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href="lib/jqm/jquery.mobile-1.3.2.min.css"/>
+		<link rel="stylesheet" href="cordova.js">
+		<script src="lib/jqm/jquery-1.10.2.min.js"></script>
+		<script src="lib/jqm/jquery.mobile-1.3.2.min.js"></script>
+	</head>
+		
+	<body>
+	
+	<!--Menu Principal-->
+		<div data-role="page" id="idMenuPrincipal">
+			<div data-role="header">
+				<a href="#idLogin" data-role="button" data-icon="home">Login</a>
+				<h1 align="center"> App MiTeleticket</h1>
+			</div>
+			<div data-role="content">
+				<h2 align="center"> Menu Principal </h2>
+				<center>
+				<a href="http://www.teleticket.com.pe/" target="new"><img src="img/logo.jpg" width=350 height=350></a>
+				</center>
+				<h2 align="center"> Tu mejor entrada al mundo del espectáculo! </h2>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#idBuscarEspectaculo">Buscar Espectáculo</a></li>
+						<li><a href="#idVerAyuda">Ver Ayuda</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--Buscar Espectaculo-->
+		<div data-role="page" id="idBuscarEspectaculo">
+			<div data-role="header">
+				<a data-role="button" data-rel="back" data-icon="back">Volver</a>
+				<h1 align="center"> Buscar Espectáculo</h1>
+			</div>
+			<div data-role="content">
+				<fieldset data-role="fieldcontain">
+						<label for="chbuscargenero" class="select">Buscar Genero: </label>
+						<select name="chbuscargenero" id="chbuscargenero"  data-mini="true">
+							<option value="seleccionarGenero">Seleccionar Genero</option>
+							<option value="Conciertos">Concierto</option>
+							<option value="Teatro">Teatro</option>
+							<option value="Entretenimiento">Entretenimiento</option>
+							<option value="Deporte">Deporte</option>
+						</select>
+					</fieldset>
+					<input type="button" id="btnbuscarespectaculo" value="Buscar" data-mini="true" data-icon="search"/>
+					<br><br><br>
+					<ul data-role="listview" id="idBuscarEspc"/>
+			</div>
+			<div data-role="footer" data-position="fixed">
+
+			</div>
+		</div>
+		
+		<!--Login-->
+		<div data-role="page" id="idLogin">
+			<div data-role="header">
+				<a href="#idMenuPrincipal" data-role="button" data-icon="back">Volver</a>
+				<h1 align="center">Login</h1>
+			</div>
+			<div data-role="content">
+				<form id="frmlogin">
+					<fieldset data-role="fieldcontain">
+						<label for="txtloginusuario">Usuario: </label>
+						<input id="txtloginusuario" type="text" data-mini="true" data-clear-btn="true" placeholder="Usuario"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtloginpassword">Contraseña: </label>
+						<input id="txtloginpassword" type="password" data-mini="true" data-clear-btn="true" placeholder="Contraseña"/>
+					</fieldset>
+					<input type="button" id="btnconfirmar" value="Ingresar" data-mini="true" data-icon="check"/>
+					<input type="reset" id="btnlimpiarlogin" value="Limpiar" data-mini="true" data-icon="delete"/>
+					<h2 id="idresultadologin"></h2>
+					<h3 id="idAunNoEresUsuario">¿Aún no eres Usuario?</h3>
+					<a href="#idRegistrarUsuario" data-role="button" data-mini="true" data-icon="check"/>¡Registrate!</a>
+					<br><br><br><br><br><br><br><br>
+					<h3 align="center" id="idGracias">Gracias por usar la aplicación</h3>
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+				</div>
+			</div>
+		</div>
+		
+		<!--Registrar Usuario-->
+		<div data-role="page" id="idRegistrarUsuario">
+			<div data-role="header">
+				<a href="#idLogin" data-role="button" data-icon="back">Login</a>
+				<h1 align="center">Registrar Usuario</h1>
+			</div>
+			<div data-role="content">
+				<form id="frmregistrarusuario">
+					<fieldset data-role="fieldcontain">
+						<label for="txtnombreregistrar">Nombres: </label>
+						<input id="txtnombreregistrar" type="text" data-mini="true" data-clear-btn="true" placeholder="Nombre"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtapellidoregistrar">Apellidos: </label>
+						<input id="txtapellidoregistrar" type="text" data-mini="true" data-clear-btn="true" placeholder="Apellidos"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtedadregistrar">Edad: </label>
+						<input id="txtedadregistrar" type="number" data-mini="true" data-clear-btn="true" placeholder="Edad"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtcorreoregistrar">Correro Electrónico: </label>
+						<input id="txtcorreoregistrar" type="text" data-mini="true" data-clear-btn="true" placeholder="Correo Electrónico"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtcontrasenaregistrar">Contraseña: </label>
+						<input id="txtcontrasenaregistrar" type="password" data-mini="true" data-clear-btn="true" placeholder="Contraseña"/>
+					</fieldset>
+					<input type="button" id="btnregistrar" value="Registrar" data-mini="true" data-icon="check"/>
+					<input type="reset" id="btnlimpiarregistrar" value="Limpiar" data-mini="true" data-icon="delete"/>
+					<h2 id="idresultadosol"></h2>  
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+			</div>
+		</div>
+						
+		<!--Menu Usuario-->	
+		<div data-role="page" id="idMenuUsuario">
+			<div data-role="header">
+				<a href="#idMenuPrincipal" data-role="button" data-icon="home">Home</a>
+				<h1 align="center"> App. de Petroperu</h1>
+			</div>
+			<div data-role="content">
+				<h2 align="center"> Bienvenido </h2>
+				<center>
+				<a href="http://www.teleticket.com.pe/" target="new"><img src="img/logo.jpg" width=350 height=350></a>
+				</center>
+				<h2 id="idsaludousuario" align="center"></h2>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#idBuscarEspectaculo">Buscar Espectáculo</a></li>
+						<li><a href="#idVerAgenda">Ver Agenda</a></li>
+						<li><a href="#idRecomendacionsDelDia">Recomendaciones del Dia</a></li>
+						<li><a href="#idVerTop">Ver Top</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--Menu Usuario Master-->	
+		<div data-role="page" id="idMenuUsuarioMaster">
+			<div data-role="header">
+				<a href="#idMenuPrincipal" data-role="button" data-icon="home">Home</a>
+				<h1 align="center"> App MiTeleticket</h1>
+			</div>
+			<div data-role="content">
+				<h2 align="center"> Bienvenido </h2>
+				<center>
+				<a href="http://www.teleticket.com.pe/" target="new"><img src="img/logo.jpg" width=350 height=350></a>
+				</center>
+				<h2 id="idsaludousuario2" align="center"></h2>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#idAgregarEspectaculoMaster">Agregar Espectáculo</a></li>
+						<li><a href="#idListarEspectaculoMaster">Listar Espectáculos</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--Registrar Espectaculo-->
+		<div data-role="page" id="idAgregarEspectaculoMaster">
+			<div data-role="header">
+				<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back">Home</a>
+				<h1 align="center">Agregar Espectaculo</h1>
+			</div>
+			<div data-role="content">
+				<form id="frmregistrarespec">
+					<fieldset data-role="fieldcontain">
+						<label for="txtespecnombreregistrar">Nombre: </label>
+						<input id="txtespecnombreregistrar" type="text" data-mini="true" data-clear-btn="true" placeholder="Nombre de Espectáculo"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="chgenero" class="select">Genero: </label>
+						<select name="chgenero" id="chgenero" data-mini="true">
+							<option value="seleccionarGenero">Seleccionar Genero</option>
+							<option value="Conciertos">Concierto</option>
+							<option value="Teatro">Teatro</option>
+							<option value="Entretenimiento">Entretenimiento</option>
+							<option value="Deporte">Deporte</option>
+						</select>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+   						<label for="chubicacion" class="select">Ubicacion: </label>
+   						<select name="chubicacion" id="chubicacion" data-mini="true">
+   							<option value="seleccionarUbicacion">Seleccionar Ubicacion</option>
+   						</select>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtespecfecha">Fecha: </label>
+						<input id="txtespecfecha" type="date" data-mini="true" data-clear-btn="true"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtespechora">Hora: </label>
+						<input id="txtespechora" type="time" data-mini="true" data-clear-btn="true"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtespecprecio">Precio: </label>
+						<input id="txtespecprecio" type="number" data-mini="true" data-clear-btn="true"/>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<label for="txtespecdescripcion">Descripcion: </label>
+						<textarea name="txtespecdescripcion" id="txtespecdescripcion" data-clear-btn="true"></textarea>
+					</fieldset>					
+					<input type="button" id="btnregistrarespectaculo" value="Registrar" data-mini="true" data-icon="check"/>
+					<input type="reset" id="btnlimpiarregistrarespec" value="Limpiar" data-mini="true" data-icon="delete"/>
+					<h2 id="idresultadosolespec"></h2>  
+				</form>
+			</div>
+			<div data-role="footer" data-position="fixed">
+			</div>
+		</div>	
+		
+		<!--Ver Espectaculo-->
+   		<div data-role="page" id="idVerEspectaculo">
+   	 		<div data-role="header">
+   	 			<a data-role="button" data-rel="back" data-icon="back">Volver</a>
+   	 			<h1 align="center">Espectaculo</h1>
+   	 		</div>
+   	 		<div data-role="content">
+   	 				<fieldset data-role="fieldcontain" >
+						<h4>Nombre: </h4><h4 id="idnombreespec"></h4>						
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+					<h4>Lugar: </h4><h4 id="idlugarespec"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Hora: </h4><h4 id="idhoraespec"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Fecha: </h4><h4 id="idfechaespec"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Descripción: </h4><h4 id="iddescripcionespec"></h4>
+					</fieldset>	
+    				<input type="button" id="btnagendar" value="Agendar" data-mini="true" data-icon="check"/>
+    				<h2> Le puede interesar: </h2>
+    				<ul data-role="listview" id="idlistaespectaculosrecomendados"/> 
+	   	 		</div>    
+	 		<div data-role="footer" data-position="fixed">
+	 			<!--<h2 align="center"> Grupo03 - Ing. de Software II </h2>-->
+	 		</div>   	 
+   		</div>
+		
+		<!--Listar Solicitudes-->
+		<div data-role="page" id="idListarEspectaculoMaster">
+   	 		<div data-role="header">
+   	 			<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back">Volver</a>
+   	 			<h1 align="center">Listar Espectaculos</h1>
+   	 		</div>
+   	 		<div data-role="content">
+   	 			<ul data-role="listview" id="idlistaespectaculos"/> 	
+   	 		</div>    
+	 		<div data-role="footer" data-position="fixed">
+	 		</div>   	 
+   		</div>
+   		
+		<script src="js/app.js"></script>
+		
+	</body>
+</html>
