@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="lib/jqm/jquery.mobile-1.3.2.min.css"/>
-		<link rel="stylesheet" href="cordova.js">
 		<script src="lib/jqm/jquery-1.10.2.min.js"></script>
 		<script src="lib/jqm/jquery.mobile-1.3.2.min.js"></script>
 	</head>
@@ -25,17 +24,17 @@
 			<div data-role="footer" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#idBuscarEspectaculo">Buscar Espectáculo</a></li>
+						<li><a href="#idBuscarEspectaculoNoUsuario">Buscar Espectáculo</a></li>
 						<li><a href="#idVerAyuda">Ver Ayuda</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		
-		<!--Buscar Espectaculo-->
-		<div data-role="page" id="idBuscarEspectaculo">
+		<!--Buscar Espectaculo No Usuario-->
+		<div data-role="page" id="idBuscarEspectaculoNoUsuario">
 			<div data-role="header">
-				<a data-role="button" data-rel="back" data-icon="back">Volver</a>
+				<a data-role="button" data-rel="back" data-icon="back"></a>
 				<h1 align="center"> Buscar Espectáculo</h1>
 			</div>
 			<div data-role="content">
@@ -49,9 +48,35 @@
 							<option value="Deporte">Deporte</option>
 						</select>
 					</fieldset>
-					<input type="button" id="btnbuscarespectaculo" value="Buscar" data-mini="true" data-icon="search"/>
+					<input type="button" id="btnbuscarespectaculonousuario" value="Buscar" data-mini="true" data-icon="search"/>
 					<br><br><br>
 					<ul data-role="listview" id="idBuscarEspc"/>
+			</div>
+			<div data-role="footer" data-position="fixed">
+
+			</div>
+		</div>
+		
+		<!--Buscar Espectaculo Usuario-->
+		<div data-role="page" id="idBuscarEspectaculoUsuario">
+			<div data-role="header">
+				<a data-role="button" data-rel="back" data-icon="back"></a>
+				<h1 align="center"> Buscar Espectáculo</h1>
+			</div>
+			<div data-role="content">
+				<fieldset data-role="fieldcontain">
+						<label for="chbuscargenerousuario" class="select">Buscar Genero: </label>
+						<select name="chbuscargenerousuario" id="chbuscargenerousuario"  data-mini="true">
+							<option value="seleccionarGenero">Seleccionar Genero</option>
+							<option value="Conciertos">Concierto</option>
+							<option value="Teatro">Teatro</option>
+							<option value="Entretenimiento">Entretenimiento</option>
+							<option value="Deporte">Deporte</option>
+						</select>
+					</fieldset>
+					<input type="button" id="btnbuscarespectaculousuario" value="Buscar" data-mini="true" data-icon="search"/>
+					<br><br><br>
+					<ul data-role="listview" id="idBuscarEspcUsuario"/>
 			</div>
 			<div data-role="footer" data-position="fixed">
 
@@ -61,7 +86,7 @@
 		<!--Login-->
 		<div data-role="page" id="idLogin">
 			<div data-role="header">
-				<a href="#idMenuPrincipal" data-role="button" data-icon="back">Volver</a>
+				<a href="#idMenuPrincipal" data-role="button" data-icon="back"></a>
 				<h1 align="center">Login</h1>
 			</div>
 			<div data-role="content">
@@ -130,7 +155,7 @@
 		<div data-role="page" id="idMenuUsuario">
 			<div data-role="header">
 				<a href="#idMenuPrincipal" data-role="button" data-icon="home">Home</a>
-				<h1 align="center"> App. de Petroperu</h1>
+				<h1 align="center"> App MiTeleticket</h1>
 			</div>
 			<div data-role="content">
 				<h2 align="center"> Bienvenido </h2>
@@ -142,7 +167,7 @@
 			<div data-role="footer" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#idBuscarEspectaculo">Buscar Espectáculo</a></li>
+						<li><a href="#idBuscarEspectaculoUsuario">Buscar Espectáculo</a></li>
 						<li><a href="#idVerAgenda">Ver Agenda</a></li>
 						<li><a href="#idRecomendacionsDelDia">Recomendaciones del Dia</a></li>
 						<li><a href="#idVerTop">Ver Top</a></li>
@@ -177,7 +202,7 @@
 		<!--Registrar Espectaculo-->
 		<div data-role="page" id="idAgregarEspectaculoMaster">
 			<div data-role="header">
-				<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back">Home</a>
+				<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back"></a>
 				<h1 align="center">Agregar Espectaculo</h1>
 			</div>
 			<div data-role="content">
@@ -230,7 +255,7 @@
 		<!--Ver Espectaculo-->
    		<div data-role="page" id="idVerEspectaculo">
    	 		<div data-role="header">
-   	 			<a data-role="button" data-rel="back" data-icon="back">Volver</a>
+   	 			<a data-role="button" data-rel="back" data-icon="back"></a>
    	 			<h1 align="center">Espectaculo</h1>
    	 		</div>
    	 		<div data-role="content">
@@ -250,6 +275,8 @@
 						<h4>Descripción: </h4><h4 id="iddescripcionespec"></h4>
 					</fieldset>	
     				<input type="button" id="btnagendar" value="Agendar" data-mini="true" data-icon="check"/>
+    				<h2 id="idresultadoagenda"></h2>
+    				<br>
     				<h2> Le puede interesar: </h2>
     				<ul data-role="listview" id="idlistaespectaculosrecomendados"/> 
 	   	 		</div>    
@@ -257,15 +284,56 @@
 	 			<!--<h2 align="center"> Grupo03 - Ing. de Software II </h2>-->
 	 		</div>   	 
    		</div>
+   		
+   		<!--Ver Espectaculo No Usuarios-->
+   		<div data-role="page" id="idVerEspectaculoNoUsuario">
+   	 		<div data-role="header">
+   	 			<a data-role="button" data-rel="back" data-icon="back"></a>
+   	 			<h1 align="center">Espectaculo</h1>
+   	 		</div>
+   	 		<div data-role="content">
+   	 				<fieldset data-role="fieldcontain" >
+						<h4>Nombre: </h4><h4 id="idnombreespecno"></h4>						
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+					<h4>Lugar: </h4><h4 id="idlugarespecno"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Hora: </h4><h4 id="idhoraespecno"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Fecha: </h4><h4 id="idfechaespecno"></h4>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<h4>Descripción: </h4><h4 id="iddescripcionespecno"></h4>
+					</fieldset>	  
+	   	 		</div>    
+	 		<div data-role="footer" data-position="fixed">
+	 			<!--<h2 align="center"> Grupo03 - Ing. de Software II </h2>-->
+	 		</div>   	 
+   		</div>
 		
-		<!--Listar Solicitudes-->
+		<!--Listar Espectaculos-->
 		<div data-role="page" id="idListarEspectaculoMaster">
    	 		<div data-role="header">
-   	 			<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back">Volver</a>
+   	 			<a href="#idMenuUsuarioMaster" data-role="button" data-icon="back"></a>
    	 			<h1 align="center">Listar Espectaculos</h1>
    	 		</div>
    	 		<div data-role="content">
    	 			<ul data-role="listview" id="idlistaespectaculos"/> 	
+   	 		</div>    
+	 		<div data-role="footer" data-position="fixed">
+	 		</div>   	 
+   		</div>
+   		
+   		<!--Ver Agenda-->
+   		<div data-role="page" id="idVerAgenda">
+   	 		<div data-role="header">
+   	 			<a href="#idMenuUsuario" data-role="button" data-icon="back"></a>
+   	 			<h1 align="center">Agenda</h1>
+   	 		</div>
+   	 		<div data-role="content">
+   	 			<ul data-role="listview" id="idlistaespectaculosagendados"/> 	
    	 		</div>    
 	 		<div data-role="footer" data-position="fixed">
 	 		</div>   	 

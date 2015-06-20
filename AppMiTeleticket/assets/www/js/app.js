@@ -1,5 +1,10 @@
-var url = "http://23.246.240.61/PetroperuDAO.php?";
+var url = "http://50.97.242.3/PetroperuDAO.php?";
 var idguardarsesion = " ";
+var correosesion = " ";
+var idhora = " ";
+var idfecha = " ";
+var idespectaculo = " ";
+var idlugar = " ";
 
 //PARA REGISTRAR UN USUARIO
 $("#btnregistrar").on("click",function(){
@@ -26,6 +31,24 @@ function getResultadoRegistrarSolicitud(presultado){
 	$.mobile.loading('hide');	
 }	
 
+//PARA REGISTRAR EN AGENDA
+$("#btnagendar").on("click",function(){
+	url1 = url + "opcion=9&correo="+correosesion+"&espectaculo="+idespectaculo+"&fecha="+idfecha+"&hora="+idhora+"&lugar="+idlugar+"&callback=?";
+	$.mobile.loading('show',{text:'Agendando',textVisible:true});
+	$.getJSON(url1,getResultadoAgendar);
+}
+);
+
+function getResultadoAgendar(presultado){
+	console.log(presultado);
+	var resultado = presultado;
+	if (resultado==1)
+		$("#idresultadoagenda").html("<b>Agendado Satisfactorio</b>");		
+	else
+		$("#idresultadoagenda").html("<b>No se puede Agendar / Evento ya Agendado</b>");		
+	$.mobile.loading('hide');	
+}
+
 //PARA LOGEARSE AL SISTEMA
 $("#btnconfirmar").on("click",function(){
 	var usuario = $("#txtloginusuario").val();
@@ -39,13 +62,15 @@ function getRecuperarNombre(presultado){
 	console.log(presultado);	
 	var nombre = presultado;
 	if (nombre == (false)){
-		$("#idresultadologin").html("<b>Usuario o Contraseña Incorrectos</b>");				
+		$("#idresultadologin").html("<b>Usuario o Contraseï¿½a Incorrectos</b>");				
 	}else{
 		if(nombre[0]=="martin_ramos_0894@hotmail.com"){
 			$.mobile.changePage("#idMenuUsuarioMaster");
+			correosesion = nombre[0];
 			$("#idsaludousuario2").html("Bienvenido: " + nombre[2] + " " + nombre[3]);
 		}else{
 			$.mobile.changePage("#idMenuUsuario");
+			correosesion = nombre[0];
 			$("#idsaludousuario").html("Bienvenido: " + nombre[2] + " " + nombre[3]);
 		}		
 	}		
@@ -109,7 +134,7 @@ $("#idVerEspectaculo").on("pageshow",function(){
 function getEspectaculoRecomendados(presultado){
 	var lista="";
 	//shuffle(presultado);
-	for(i=0;i<3;i++){
+	for(i=0;i<2;i++){
 		console.log(presultado[i]);
 		vli="<li><a id="+presultado[i][4]+" onClick=listaespec(this.id)><p class='ui-li-aside'>"+
 		"<img src=img/"+presultado[i][4]+".jpg>"+
@@ -126,22 +151,22 @@ function getEspectaculoRecomendados(presultado){
 }
 
 //PARA LISTAR ESPECTACULOS POR GENERO
-$("#btnbuscarespectaculo").on("click",function(){
+$("#btnbuscarespectaculonousuario").on("click",function(){
 	var buscarespec = $("#chbuscargenero").val();
 		
 	url1 = url+"opcion=5&buscarespec="+buscarespec+"&callback=?";
 	
 	$.mobile.loading('show',{text:'Buscando',textVisible:true});
-	$.getJSON(url1,getEspectaculos);
+	$.getJSON(url1,getEspectaculosNoUsuario);
 	}
 );
 
-function getEspectaculos(presultado){
-	$.mobile.changePage("#idBuscarEspectaculo");
+function getEspectaculosNoUsuario(presultado){
+	$.mobile.changePage("#idBuscarEspectaculoNoUsuario");
 	var lista="";
 	for(i=0;i<presultado.length;i++){
 		console.log(presultado[i]);
-		vli="<li><a id="+presultado[i][4]+" onClick=listaespec(this.id)><p class='ui-li-aside'>"+
+		vli="<li><a id="+presultado[i][4]+" onClick=listaespecnousuario(this.id)><p class='ui-li-aside'>"+
 		"<img src=img/"+presultado[i][4]+".jpg>"+
 		"<h2 id=generoespec value="+presultado[i][5]+">Nombre: "+presultado[i][0]+"</h2>"
 		+"<h4>Ubicacion: "+presultado[i][1]+"</h4>"+"</p>"+
@@ -155,31 +180,43 @@ function getEspectaculos(presultado){
 	$.mobile.loading('hide');
 }
 
-function listaespec(id){
+function listaespecnousuario(id){
 	//alert(id);
-	$.getJSON(url+"opcion=6&id_espec="+id+"&callback=?",getEspectaculo);
+	//alert(correosesion);
+	
+	$.getJSON(url+"opcion=6&id_espec="+id+"&callback=?",getEspectaculoNoUsuario);
 	idguardarsesion = id;
 	}
 
-function getEspectaculo(presultado){
-	$.mobile.changePage("#idVerEspectaculo");
+function getEspectaculoNoUsuario(presultado){
+	$.mobile.changePage("#idVerEspectaculoNoUsuario");
 	console.log(presultado);
-	$("#idnombreespec").html(presultado[0]);
-	$("#idlugarespec").html(presultado[1]);
-	$("#idhoraespec").html(presultado[2]);
-	$("#idfechaespec").html(presultado[3]);
-	$("#iddescripcionespec").html(presultado[6]);
+	$("#idnombreespecno").html(presultado[0]);
+	idespectaculo=presultado[0];
+	$("#idlugarespecno").html(presultado[1]);
+	idlugar=presultado[1];
+	$("#idhoraespecno").html(presultado[2]);
+	idhora=presultado[2];
+	$("#idfechaespecno").html(presultado[3]);
+	idfecha=presultado[3];
+	$("#iddescripcionespecno").html(presultado[6]);
 	$.mobile.loading('hide');
+	//alert(idhora);
 }
 
-//PARA LISTAR TODOS LOS ESPECTACULOS
-$("#idListarEspectaculoMaster").on("pageshow",function(){
-	$.mobile.loading('show',{text:'Cargando Datos',textVisible:true});
-	$.getJSON(url+"opcion=7&callback=?",getListaEspectaculos);
-}
+//LISTAR ESPECACULOS POR GENERO USUARIO
+$("#btnbuscarespectaculousuario").on("click",function(){
+	var buscarespec = $("#chbuscargenerousuario").val();
+		
+	url1 = url+"opcion=5&buscarespec="+buscarespec+"&callback=?";
+	
+	$.mobile.loading('show',{text:'Buscando',textVisible:true});
+	$.getJSON(url1,getEspectaculosUsuario);
+	}
 );
- 
-function getListaEspectaculos(presultado){
+
+function getEspectaculosUsuario(presultado){
+	$.mobile.changePage("#idBuscarEspectaculoUsuario");
 	var lista="";
 	for(i=0;i<presultado.length;i++){
 		console.log(presultado[i]);
@@ -192,7 +229,83 @@ function getListaEspectaculos(presultado){
 		"</li>";
 		lista = lista+vli;
 	}
+	$("#idBuscarEspcUsuario").html(lista);
+	$("#idBuscarEspcUsuario").listview('refresh');
+	$.mobile.loading('hide');
+}
+
+function listaespec(id){
+	//alert(id);
+	//alert(correosesion);
+	
+	$.getJSON(url+"opcion=6&id_espec="+id+"&callback=?",getEspectaculo);
+	idguardarsesion = id;
+	}
+
+function getEspectaculo(presultado){
+	$("#idresultadoagenda").html("");
+	$.mobile.changePage("#idVerEspectaculo");
+	console.log(presultado);
+	$("#idnombreespec").html(presultado[0]);
+	idespectaculo=presultado[0];
+	$("#idlugarespec").html(presultado[1]);
+	idlugar=presultado[1];
+	$("#idhoraespec").html(presultado[2]);
+	idhora=presultado[2];
+	$("#idfechaespec").html(presultado[3]);
+	idfecha=presultado[3];
+	$("#iddescripcionespec").html(presultado[6]);
+	$.mobile.loading('hide');
+	//alert(idhora);
+}
+
+
+//PARA LISTAR TODOS LOS ESPECTACULOS
+$("#idListarEspectaculoMaster").on("pageshow",function(){
+	$.mobile.loading('show',{text:'Cargando Datos',textVisible:true});
+	$.getJSON(url+"opcion=7&callback=?",getListaEspectaculos);
+}
+);
+ 
+function getListaEspectaculos(presultado){
+	var lista="";
+	for(i=0;i<presultado.length;i++){
+		console.log(presultado[i]);
+		vli="<li><a id="+presultado[i][4]+" onClick=listaespecnousuario(this.id)><p class='ui-li-aside'>"+
+		"<img src=img/"+presultado[i][4]+".jpg>"+
+		"<h2 id=generoespec value="+presultado[i][5]+">Nombre: "+presultado[i][0]+"</h2>"
+		+"<h4>Ubicacion: "+presultado[i][1]+"</h4>"+"</p>"+
+		"<p><h4>Hora: "+presultado[i][2]+"</h4></p>"+
+		"<p><h4>Fecha: "+presultado[i][3]+"</h4></p></a></li>"+
+		"</li>";
+		lista = lista+vli;
+	}
 	$("#idlistaespectaculos").html(lista);
 	$("#idlistaespectaculos").listview('refresh');
+	$.mobile.loading('hide');
+}
+
+//PARA LISTAR ESPECTACULOS AGENDADOS
+$("#idVerAgenda").on("pageshow",function(){
+	$.mobile.loading('show',{text:'Cargando Datos',textVisible:true});
+	$.getJSON(url+"opcion=10&correo="+correosesion+"&callback=?",getListaEspectaculosAgendados);
+}
+);
+ 
+function getListaEspectaculosAgendados(presultado){
+	var lista="";
+	for(i=0;i<presultado.length;i++){
+		console.log(presultado[i]);
+		vli="<li><p class='ui-li-aside'>"+
+		"<img src=img/"+presultado[i][5]+".jpg>"+
+		"<h2>Nombre: "+presultado[i][1]+"</h2>"
+		+"<h4>Ubicacion: "+presultado[i][4]+"</h4>"+"</p>"+
+		"<p><h4>Hora: "+presultado[i][3]+"</h4></p>"+
+		"<p><h4>Fecha: "+presultado[i][2]+"</h4></p></a></li>"+
+		"</li>";
+		lista = lista+vli;
+	}
+	$("#idlistaespectaculosagendados").html(lista);
+	$("#idlistaespectaculosagendados").listview('refresh');
 	$.mobile.loading('hide');
 }
